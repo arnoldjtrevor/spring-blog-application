@@ -31,7 +31,4 @@ public class MathController {
     public int divide(@PathVariable int numOne, @PathVariable int numTwo) {
         return numOne / numTwo;
     }
-
-
-
 }
