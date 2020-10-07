@@ -1,39 +1,49 @@
 package com.codeup.blog;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 
 @Controller
 public class PostController {
 
-    // Posts Index Page
     @GetMapping("/posts")
-    @ResponseBody
-    public String postsDescription() {
-        return "posts index page\n";
+//    @ResponseBody
+    public String showAllPosts(Model model) {
+        ArrayList<Post> posts = new ArrayList<>();
+
+        posts.add(new Post(1, "First Blog Post", "This is the body of the First Post."));
+        posts.add(new Post(2, "Second Blog Post", "This is the body of the Second Post."));
+
+        model.addAttribute("posts", posts);
+        return "posts/index";
     }
 
-    // Individual Post Page
     @GetMapping("/posts/{id}")
-    @ResponseBody
-    public String postsIDDescription(@PathVariable String id) {
-        return "view an individual post\n\n";
+//    @ResponseBody
+    public String showOnePost(@PathVariable long id, Model model) {
+        Post newPost = new Post();
+
+        newPost.setTitle("Blog Post #1");
+        newPost.setBody("This is the body of First Blog.");
+
+        // pass post to the show page
+        model.addAttribute("newPost", newPost);
+        model.addAttribute("pgTitle", "Individual Post");
+        return "posts/show";
     }
 
-    // Form For Creating Post
     @GetMapping("/posts/create")
     @ResponseBody
-    public String postsCreateFormDescription() {
-        return "view the form for creating a post\n";
+    public String postsCreate() {
+        return "show";
     }
 
-    // Creating Post
     @PostMapping("/posts/create")
     @ResponseBody
-    public String postsCreateDescription() {
-        return "create a new post\n";
+    public String postsCreatePost() {
+        return "create a new post";
     }
 }
