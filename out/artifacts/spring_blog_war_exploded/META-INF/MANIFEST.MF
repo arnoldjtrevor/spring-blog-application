@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Created-By: IntelliJ IDEA
-Built-By: trevaconda
-Build-Jdk: 11.0.7
-Implementation-Title: blog
-Implementation-Version: 0.0.1-SNAPSHOT
-Implementation-Vendor-Id: com.codeup
-Main-Class: ${start-class}
-
